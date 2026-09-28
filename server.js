@@ -4,6 +4,7 @@ dotenv.config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const connectDB = require('./src/config/db'); // Database connection import
 
 const authRoutes = require('./src/routes/auth.routes');
 const workspaceRoutes = require('./src/routes/workspace.routes');
@@ -11,6 +12,9 @@ const projectRoutes = require('./src/routes/project.routes');
 const taskRoutes = require('./src/routes/task.routes');
 
 const app = express();
+
+// Connect to MongoDB
+connectDB();
 
 app.use(helmet());
 app.use(cors());
