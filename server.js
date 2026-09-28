@@ -20,6 +20,11 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
+// Root Route (Is se "Cannot GET /" ka error nahi aayega)
+app.get('/', (req, res) => {
+  res.send('Welcome to DevPulse API Server!');
+});
+
 // Routes Connections
 app.use('/api/auth', authRoutes);
 app.use('/api/workspaces', workspaceRoutes);
