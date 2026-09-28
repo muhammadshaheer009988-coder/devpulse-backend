@@ -1,7 +1,6 @@
 const Project = require('../models/project');
 
-// Project Banayein (Save)
-exports.createProject = async (req, res) => {
+const createProject = async (req, res) => {
   try {
     const { name, workspaceId } = req.body;
     const project = await Project.create({
@@ -14,8 +13,7 @@ exports.createProject = async (req, res) => {
   }
 };
 
-// Projects Get Karein
-exports.getProjects = async (req, res) => {
+const getProjects = async (req, res) => {
   try {
     const projects = await Project.find({ workspace: req.params.workspaceId });
     res.status(200).json(projects);
@@ -23,3 +21,5 @@ exports.getProjects = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+module.exports = { createProject, getProjects };

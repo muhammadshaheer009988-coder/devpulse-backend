@@ -1,16 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { createProject, getWorkspaceProjects } = require('../controllers/project.controller');
-const authMiddleware = require('../middlewares/auth.middleware');
-
-// Check karein middleware sahi se import ho raha hai
-if (typeof authMiddleware === 'function') {
-  router.use(authMiddleware);
-} else if (authMiddleware && typeof authMiddleware.protect === 'function') {
-  router.use(authMiddleware.protect);
-}
+const { createProject, getProjects } = require('../controllers/project.controller');
 
 router.post('/', createProject);
-router.get('/workspace/:workspaceId', getWorkspaceProjects);
+router.get('/:workspaceId', getProjects);
 
 module.exports = router;
