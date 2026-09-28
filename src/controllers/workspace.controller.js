@@ -1,7 +1,7 @@
 const Workspace = require('../models/workspace');
 
 // Workspace Banayein (Save)
-exports.createWorkspace = async (req, res) => {
+const createWorkspace = async (req, res) => {
   try {
     const { name } = req.body;
     const workspace = await Workspace.create({
@@ -14,8 +14,8 @@ exports.createWorkspace = async (req, res) => {
   }
 };
 
-// Tamam Workspaces Haasil Karein (Get)
-exports.getWorkspaces = async (req, res) => {
+// Workspaces Get Karein
+const getWorkspaces = async (req, res) => {
   try {
     const workspaces = await Workspace.find({ owner: req.user.id });
     res.status(200).json(workspaces);
@@ -23,3 +23,6 @@ exports.getWorkspaces = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Functions Export Karein
+module.exports = { createWorkspace, getWorkspaces };
